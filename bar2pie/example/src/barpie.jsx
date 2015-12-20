@@ -3,7 +3,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var TagCard = require('react-d3-mobile-card').TagCard;
+var RatioCard = require('react-d3-mobile-card').RatioCard;
 var BarChart = require('react-d3-basic').BarChart;
 
 var css = require('./css/style.css');
@@ -12,97 +12,62 @@ var css = require('./css/style.css');
 (function() {
   var width = 300;
   var height = 400;
-  var air = require('json!../data/air.json');
-  var data = air[0].data;
-  var title = function(d) { return d.SiteName; }
-  var pm = function(d) { return d['PM2_5']; }
-  // var value = function(d) { return d.Status; }
+  var raw = require('json!../data/water.json');
+  var title = function(d) { return d.name; }
+  var max = function(d) {return 100; };
+  var value = function(d) { return d.percentage; }
   var note = function(d) {
-    return '<div>狀態：' + d.Status + '</div><div>PM2.5：' + d['PM2_5'] + '</div>';
+    return '<div><b>更新時間：' + d.updateAt + '</b></div>'
+    + '有效蓄水量：' + d.volumn;
+  }
+
+  var cards = [];
+  var data = [];
+
+  for(var key in raw) {
+    var titleSet = title(raw[key]);
+    var maxSet = max(raw[key]);
+    var valueSet = value(raw[key]);
+    var noteSet = note(raw[key]);
+
+    data.push(raw[key]);
+
+    cards.push(
+      <RatioCard
+        key= {key}
+        data= {raw[key]}
+        width= {width}
+        height= {height}
+        title= {titleSet}
+        max= {maxSet}
+        value= {valueSet}
+        note= {noteSet}
+        colorRange= {['rgb(26,152,80)', 'rgb(165,0,38)']}
+        titleClass= {"title-test-class"}
+        donutClass= {"donut-test-class"}
+        noteClass= {"note-test-class"}
+      />
+    )
   }
 
   var chartSeries = [
       {
-        field: 'PM2_5',
-        name: 'PM 2.5',
+        field: 'percentage',
+        name: 'Percentage',
         style: {
-          'fill-opacity': .5
+          'fill-opacity': .8
         }
       }
     ],
     x = function(d) {
-      return d.SiteName;
+      return d.name;
     },
     xScale = 'ordinal',
     y = function(d) {
-      return +d;
-    }
-
-  data.map(function(d) {
-    var color;
-    var text;
-
-    if(pmSet < 12 && pmSet >= 0) {
-      color = 'rgb(156, 255, 156)';
-      text = '低';
-    }else if(pmSet < 24 && pmSet >= 12) {
-      color = 'rgb(49, 255, 0)';
-      text = '低'
-    }else if(pmSet < 36 && pmSet >= 24) {
-      color = 'rgb(49, 207, 0)';
-      text = '低'
-    }else if(pmSet < 42 && pmSet >= 36) {
-      color = 'rgb(255, 255, 0)';
-      text = '中'
-    }else if(pmSet < 48 && pmSet >= 42) {
-      color = 'rgb(255, 207, 0)';
-      text = '中'
-    }else if(pmSet < 54 && pmSet >= 48) {
-      color = 'rgb(255, 154, 0)'
-      text = '中'
-    }else if(pmSet < 59 && pmSet >= 54) {
-      color = 'rgb(255, 100, 100)'
-      text = '高'
-    }else if(pmSet < 65 && pmSet >= 59) {
-      color = 'rgb(255, 0, 0)'
-      text = '高'
-    }else if(pmSet < 71 && pmSet >= 65) {
-      color = 'rgb(153, 0, 0)'
-      text = '高'
-    }else if(pmSet >= 71) {
-      color = 'rgb(206, 48, 255)'
-      text = '非常高'
-    }
-
-    d._style = {
-      color: color
-    }
-
-    d.StatusText = text;
-
-    return d;
-  })
-
-  var cards = data.map(function(d, i) {
-
-    var pmSet = pm(d);
-    var noteSet = note(d);
-    var titleSet = title(d);
-
-    return (
-      <TagCard
-        key= {i}
-        data= {d}
-        width= {width}
-        height= {height}
-        title= {titleSet}
-        margins= {{left: 30, bottom: 30, right: 30, top: 30}}
-        value= {d.StatusText}
-        color= {d._style.color}
-        note= {noteSet}
-      />
-    )
-  })
+      return +d / 100;
+    },
+    yDomain= [.01, 1],
+    yTicks = [10, "%"]
 
   var Container = React.createClass({
     getInitialState: function() {
@@ -130,6 +95,8 @@ var css = require('./css/style.css');
           x= {x}
           xScale= {xScale}
           y= {y}
+          yDomain= {yDomain}
+          yTicks= {yTicks}
           showXGrid= {true}
           showYGrid= {true}
         />
@@ -156,6 +123,6 @@ var css = require('./css/style.css');
 
   ReactDOM.render(
     <Container/>
-  , document.getElementById('blank-barordinal')
+  , document.getElementById('blank-barpie')
   )
 })()

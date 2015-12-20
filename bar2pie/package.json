@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "d3": "^3.5.6",
-    "react-d3-basic": "^1.4.3",
+    "react-d3-basic": "^1.4.4",
     "react-d3-mobile-card": "^0.1.2",
     "react-visual-graphic": "^0.2.0"
   }
