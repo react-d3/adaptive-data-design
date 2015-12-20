@@ -28,7 +28,7 @@ var mobile_css = require('./css/mobile.css');
       this.setState({width: window.innerWidth- 50, height: window.innerHeight - 50});
     },
     componentWillMount: function() {
-        this.updateDimensions();
+      this.updateDimensions();
     },
     componentDidMount: function() {
       window.addEventListener("resize", this.updateDimensions);

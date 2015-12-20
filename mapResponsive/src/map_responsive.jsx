@@ -6,12 +6,14 @@ import {
   PropTypes
 } from 'react';
 
+import ReactDOM from 'react-dom';
 import {Map} from 'react-d3-map';
 import {MercatorMobileMap} from 'react-d3-map-mobile';
 
 export default class MapResponsive extends Component {
   constructor(props) {
     super(props)
+    this.containerState = {};
   }
 
   static childContextTypes = {
@@ -33,11 +35,12 @@ export default class MapResponsive extends Component {
   }
 
   render() {
-    const {
+    var {
       width,
       height,
       scale,
-      center
+      center,
+      translate
     } = this.props;
 
     var {
@@ -53,9 +56,11 @@ export default class MapResponsive extends Component {
       chart = (
         <MercatorMobileMap
           {...this.props}
+          ref= "mapContainer"
           width= {width}
           height= {height}
           scale= {scale}
+          translate= {translate}
           controllerScale= {controllerScale}
           center= {center}
         >
@@ -67,9 +72,11 @@ export default class MapResponsive extends Component {
       chart = (
         <Map
           {...this.props}
+          ref= "mapContainer"
           width= {width}
           height= {height}
           scale= {scale}
+          translate= {translate}
           center= {center}
         >
           {this.props.children}

@@ -34,6 +34,7 @@
     "react-d3-map": "^0.8.3",
     "react-d3-map-core": "^0.13.5",
     "react-d3-map-mobile": "^0.1.0",
+    "react-dom": "^0.14.3",
     "react-faux-dom": "^2.1.0"
   },
   "jest": {

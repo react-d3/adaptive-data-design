@@ -1,0 +1,4 @@
+.x text {
+  transform: rotate(45deg) !important;
+  text-anchor: start !important;
+}
