@@ -2,9 +2,11 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var d3 = require('d3');
 
 var RatioCard = require('react-d3-mobile-card').RatioCard;
 var BarChart = require('react-d3-basic').BarChart;
+var BarHorizontalChart = require('react-d3-basic').BarHorizontalChart;
 
 var css = require('./css/style.css');
 
@@ -24,13 +26,17 @@ var css = require('./css/style.css');
   var cards = [];
   var data = [];
 
+  var color = d3.scale.quantize()
+                .domain([.25, .5, 1])
+                .range(['#FF7777', 'rgb(255, 160, 119)', 'steelblue'])
+
   for(var key in raw) {
     var titleSet = title(raw[key]);
     var maxSet = max(raw[key]);
     var valueSet = value(raw[key]);
     var noteSet = note(raw[key]);
 
-    data.push(raw[key]);
+    data.push(Object.assign(raw[key], {_style: {fill: color(valueSet / 100)}}));
 
     cards.push(
       <RatioCard
@@ -42,7 +48,8 @@ var css = require('./css/style.css');
         max= {maxSet}
         value= {valueSet}
         note= {noteSet}
-        colorRange= {['rgb(26,152,80)', 'rgb(165,0,38)']}
+        colorDomain= {[.25, .5, 1]}
+        colorRange= {['#FF7777', 'rgb(255, 160, 119)', 'steelblue']}
         titleClass= {"title-test-class"}
         donutClass= {"donut-test-class"}
         noteClass= {"note-test-class"}
@@ -102,11 +109,34 @@ var css = require('./css/style.css');
         />
       )
 
-      if(width < 1200) {
+      var barhorizontalchart = (
+        <BarHorizontalChart
+          width= {width}
+          height= {height}
+          data= {data}
+          chartSeries = {chartSeries}
+          x= {y}
+          xDomain= {yDomain}
+          xTicks= {yTicks}
+          y= {x}
+          yScale= {xScale}
+          showXGrid= {true}
+          showYGrid= {true}
+        />
+      )
+
+      if(width < 800) {
         // small device
         return (
           <div>
             {cards}
+          </div>
+        )
+      }else if(width < 1200) {
+        // pad device
+        return (
+          <div>
+            {barhorizontalchart}
           </div>
         )
       }else {
