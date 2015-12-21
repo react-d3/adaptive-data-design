@@ -5,6 +5,7 @@ var ReactDOM = require('react-dom');
 
 var TagCard = require('react-d3-mobile-card').TagCard;
 var BarChart = require('react-d3-basic').BarChart;
+var BarHorizontalChart = require('react-d3-basic').BarHorizontalChart;
 
 var css = require('./css/style.css');
 
@@ -135,11 +136,32 @@ var css = require('./css/style.css');
         />
       )
 
-      if(width < 1200) {
+      var barhorizontalchart = (
+        <BarHorizontalChart
+          width= {width}
+          height= {height}
+          data= {data}
+          chartSeries = {chartSeries}
+          x= {y}
+          y= {x}
+          yScale= {xScale}
+          showXGrid= {true}
+          showYGrid= {true}
+        />
+      )
+
+      if(width < 800) {
         // small device
         return (
           <div>
             {cards}
+          </div>
+        )
+      }else if(width < 1200) {
+        // pad device
+        return (
+          <div>
+            {barhorizontalchart}
           </div>
         )
       }else {
