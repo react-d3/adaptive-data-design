@@ -50,9 +50,8 @@ var css = require('./css/style.css');
         note= {noteSet}
         colorDomain= {[.25, .5, 1]}
         colorRange= {['#FF7777', 'rgb(255, 160, 119)', 'steelblue']}
-        titleClass= {"title-test-class"}
-        donutClass= {"donut-test-class"}
-        noteClass= {"note-test-class"}
+        titleClass= {"ratio-item-title"}
+        noteClass= {"ratio-item-note"}
       />
     )
   }
