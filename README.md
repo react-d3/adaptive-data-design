@@ -1,9 +1,9 @@
-# Responsive chart
+# Adaptive data design
 
-A experimental project of building responsive display charts 
+A experimental project of building adaptive data design.
 
 ## DEMO 
 
-1.  http://add.reactd3.org/bar2ordinal/example/barordinal.html
-2.  http://add.reactd3.org/bar2pie/example/barpie.html
-3.  http://add.reactd3.org/mapResponsive/example/mapresponsive.html
+1.  http://add.reactd3.org/demo/demo1.html
+2.  http://add.reactd3.org/demo/demo2.html
+3.  http://add.reactd3.org/demo/demo3.html
