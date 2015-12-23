@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Wide card with share menu button -->
+    <style>
+    #container {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #text-container {
+      width: 75%;
+      margin: 30px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .demo-card-wide.mdl-card {
+      width: 100%;
+      margin: 20px;
+    }
+    .demo-card-wide > .mdl-card1__title {
+      color: #fff;
+      height: 176px;
+      background: url('./img/demo1.png') center / cover;
+    }
+    .demo-card-wide > .mdl-card2__title {
+      color: #fff;
+      height: 176px;
+      background: url('./img/demo2.png') center / cover;
+    }
+    .demo-card-wide > .mdl-card3__title {
+      color: #fff;
+      height: 176px;
+      background: url('./img/demo3.png') center / cover;
+    }
+
+    .mdl-card__title-text {
+      color: #fff;
+      background-color: #000;
+      width: 100px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .demo-card-wide > .mdl-card__menu {
+      color: #fff;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>ADD (Adaptive Data-driven Design)</h1>
+      <div id="text-container">
+        Introduce a novel data visualization package, called the ADD framework, to support responsive and adaptive data-driven visualization. Currently, interactive data visualization, which is generally achieved by Javascript-based libraries such as D3.js, cannot be easily manipulated as the responsive way like the RWD principle in the CSS design. Visualization of abundant information becomes challenging while switching between the desktop view or the mobile view. To ease of code maintenance and to get rid of coding complication for diversified screen resolution, we incorporate advantages from React and D3.js. The main contribution of the ADD framework, released as an open-source library, is to facilitate the development of data manipulation and visualization in the responsive way, pursuing better user mobile experience.
+      </div>
+
+      <h2>Here are some demos:</h2>
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card1__title">
+          <h2 class="mdl-card__title-text">DEMO 1</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          Visualization of the air index in diversified devices
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/demo/demo1.html">
+            DEMO Link
+          </a>
+        </div>
+      </div>
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card2__title">
+          <h2 class="mdl-card__title-text">DEMO 2</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          Visualization of the reservoir data in diversified devices
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/demo/demo2.html">
+            DEMO Link
+          </a>
+        </div>
+      </div>
+      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card3__title">
+          <h2 class="mdl-card__title-text">DEMO 3</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          Map visualization in the desktop and in the mobile phone.
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/demo/demo3.html">
+            DEMO Link
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
